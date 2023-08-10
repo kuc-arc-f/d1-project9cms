@@ -1,0 +1,16 @@
+{
+  "name": "d1-project9cms",
+  "version": "0.0.0",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230807.0",
+    "typescript": "^5.1.6",
+    "vitest": "^0.34.1",
+    "wrangler": "2.17.0"
+  },
+  "private": true,
+  "scripts": {
+    "start": "wrangler dev",
+    "deploy": "wrangler publish",
+    "test": "vitest"
+  }
+}
