@@ -118,11 +118,21 @@ console.log(req);
     try{
       if (req) {
         const sql = `
-        SELECT * FROM Post
-        WHERE id = ${req.id}
+        SELECT 
+        Post."id"
+       ,Post."createdAt"
+       ,Post."title"
+       ,Post."content"
+       ,Post."siteId"
+       ,Post."categoryId"
+       ,Category."name" as CategoryName
+       FROM Post 
+       LEFT OUTER JOIN Category
+       ON Category."id" = Post.categoryId        
+        WHERE Post.id = ${req.id}
         `;        
         result = await env.DB.prepare(sql).all();
-//console.log(result.results);
+console.log(sql);
         if(result.results.length < 1) {
           console.error("Error, results.length < 1");
           throw new Error('Error , get');
@@ -150,9 +160,19 @@ console.log(req);
       let result: any = {};  
       if (req) {
         const sql = `
-        SELECT * FROM Post
-        WHERE siteId = ${req.siteId}
-        ORDER BY id DESC
+        SELECT 
+        Post."id"
+        ,Post."createdAt"
+        ,Post."title"
+        ,Post."content"
+        ,Post."siteId"
+        ,Post."categoryId"
+        ,Category."name" as CategoryName
+        FROM Post 
+        LEFT OUTER JOIN Category
+        ON Category."id" = Post.categoryId
+        WHERE Post.siteId = ${req.siteId}
+        ORDER BY Post.id DESC
         LIMIT 1000
         `;  
 //console.log(sql);
