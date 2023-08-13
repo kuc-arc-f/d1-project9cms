@@ -99,6 +99,9 @@ const Router = {
     if (pathname === "/category/get_list") {
       response = await categoryRouter.get_list(req, res, env);  
     }
+    if (pathname === "/category/update") {
+      response = await categoryRouter.update(req, res, env);  
+    }
     //user
     if (pathname === "/users/create") {
       response = await userRouter.create(req, res, env);  

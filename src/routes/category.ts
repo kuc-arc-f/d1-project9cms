@@ -84,12 +84,11 @@ console.log(req);
     try{
       if (req) {
         const sql = `
-        UPDATE todos 
-        SET title = '${req.title}', content='${req.content}',
-        completed = '${req.completed}'
+        UPDATE Category 
+        SET name = '${req.name}'
         WHERE id = ${req.id}
         `;
-        console.log(sql);
+console.log(sql);
         const resulte = await env.DB.prepare(sql).run();
         if(resulte.success !== true) {
           console.error("Error, update");
